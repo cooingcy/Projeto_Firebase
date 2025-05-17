@@ -42,40 +42,36 @@
             <p class="text-start fs-5">Cadastrar - Agendamento de Potenciais Clientes</p>
             <p class="text-start fs-6">Sistema Utilizado para agendamento de serviços.</p>
             <p>
-                {{#each post}}
-                    {{#dataValues}}
-                        <form action="/atualizar" method="POST">
-                            <div class="mb-3 text-start">
-                                <input type="hidden" name="id" class="form-control" id="nome" value="{{id}}">
-                                <label class="form-label">Nome:</label>
-                                <input type="name" name="nome" class="form-control" id="nome" value="{{nome}}"> 
-                            </div>
-                            <div class="mb-3 text-start">
-                                <label class="form-label">Telefone:</label>
-                                <input type="number" name="telefone" class="form-control" id="telefone" value="{{telefone}}">
-                            </div>
-                            <div class="mb-3 text-start">
-                                <label class="form-label">Origem:</label>
-                                <select name="origem" class="form-select" aria-label="Default select example">
-                                    <option value="celular">Celular</option>
-                                    <option value="whatsapp">Whatsapp</option>
-                                    <option value="telefone_fixo">Telefone Fixo</option>
-                                </select>
-                            </div>
-                            <div class="mb-3 text-start">
-                                <label class="form-label">Data do Contato:</label>
-                                <input type="date" name="data_contato" class="form-control" id="data_contato" aria-describedby="emailHelp" value="{{data_contato}}">
-                            </div>
-                            <div class="mb-3 text-start">
-                                <label class="form-label">Observação:</label>
-                                <textarea name="observacao" class="form-control" placeholder="" id="observacao" style="height: 100px">{{observacao}}</textarea>
-                            </div>
-                            <div class="mb-3 text-start">
-                                <button type="submit" class="btn btn-primary">Atualizar</button>
-                            </div>
-                        </form>
-                    {{/dataValues}}
-                {{/each}}
+                <form action="/atualizar" method="POST">
+                    <div class="mb-3 text-start">
+                        <input type="hidden" name="id" value="{{agendamento.id}}">
+                        <label class="form-label">Nome:</label>
+                        <input type="text" name="nome" class="form-control" value="{{agendamento.nome}}">
+                    </div>
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Telefone:</label>
+                        <input type="text" name="telefone" class="form-control" value="{{agendamento.telefone}}">
+                    </div>
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Origem:</label>
+                        <select name="origem" class="form-select">
+                            <option value="celular" {{#if (eq origem "celular")}}selected{{/if}}>Celular</option>
+                            <option value="whatsapp" {{#if (eq origem "whatsapp")}}selected{{/if}}>Whatsapp</option>
+                            <option value="telefone_fixo" {{#if (eq origem "telefone_fixo")}}selected{{/if}}>Telefone Fixo</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Data do Contato:</label>
+                        <input type="date" name="data_contato" class="form-control" value="{{agendamento.data_contato}}">
+                    </div>
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Observação:</label>
+                        <textarea name="observacao" class="form-control" style="height: 100px">{{agendamento.observacao}}</textarea>
+                    </div>
+                    <div class="mb-3 text-start">
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                    </div>
+                </form>
             </p>
         </div>
         <div class="col-1">
